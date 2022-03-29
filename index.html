@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <link rel="stylesheet" href="style1.css" />
+    <link rel="stylesheet" href="script.js" />
+    <link rel="stylesheet" href="/jquery/jquery-ui.css" />
+    <link rel="stylesheet" href="/jquery/jquery-ui.js" />
+    <link rel="stylesheet" href="/jquery/jquery.min.js" />
+    <title>Image puzzle</title>
+  </head>
+  <body style="background-color: grey">
+    <div style="background-color: rgb(209, 230, 24)">
+      <h1 style="text-align: center" id="title;height: 100px">Image Puzzle</h1>
+    </div>
+    <hr />
+
+    <!-- <button id='startBtn' style="text-align:center" onclick="shuffle()">Start</button> -->
+    <img src="/400x400.jpg" alt="refference" class="reff" />
+
+    <div style="background-color: black" id="puzzle" class="sortable">
+      <div id="tile1" class="tile"></div>
+      <div id="tile2" class="tile"></div>
+      <div id="tile3" class="tile"></div>
+      <div id="tile4" class="tile"></div>
+      <div id="tile5" class="tile"></div>
+      <div id="tile6" class="tile"></div>
+      <div id="tile7" class="tile"></div>
+      <div id="tile8" class="tile"></div>
+      <div id="tile9" class="tile"></div>
+    </div>
+    <div
+      id="popup"
+      style="
+        display: block;
+        position: absolute;
+        top: 38%;
+        right: 32%;
+        background-color: rgb(209, 230, 24);
+      "
+    ></div>
+    <div
+      id="message"
+      style="
+        position: absolute;
+        top: 38%;
+        right: 32%;
+        background-color: rgb(209, 230, 24);
+      "
+    ></div>
+    <div style="background-color: rgb(209, 230, 24)">
+      <button id="startBtn" style="text-align: center" onclick="shuffle()">
+        Start
+      </button>
+      <h1 style="position: absolute; top: -8px; right: 50px; padding: 10px">
+        Timer:
+      </h1>
+      <h1
+        style="position: absolute; top: -8px; right: 0px; padding: 10px"
+        id="timer"
+      ></h1>
+    </div>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="/jquery/jquery-ui.js"></script>
+
+    <script>
+      var sec = 0;
+      let timer;
+      function shuffle() {
+        $("#popup").hide("");
+        $("#startBtn").hide();
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        array.sort(function (a, b) {
+          return 0.5 - Math.random();
+        });
+
+        $("#puzzle").html("");
+        for (var i = 0; i < array.length; i++) {
+          $("#puzzle").append(
+            "<div id='tile" + array[i] + "' class='tile'></div>"
+          );
+        }
+
+        sec = 0;
+        timer = setInterval(function () {
+          sec = sec + 1;
+          $("#timer").html(sec);
+        }, 1000);
+      }
+
+      $(".sortable").sortable(
+        { connectWith: ".sortable" },
+        {
+          update: function (event, ui) {
+            countRight = 0;
+            $("#puzzle > div").each((index, elem) => {
+              if ("tile" + (index + 1) == elem.id) {
+                countRight = countRight + 1;
+              }
+              if (countRight == 9) {
+                let completedin = sec;
+                sec = 0;
+                clearInterval(timer);
+                $("#timer").html("");
+                $("#startBtn").show();
+                $("#popup").show();
+                $("#message").html(
+                  "<h2>👏 Congratulations !!!</h2> You have solved the puzzle in " +
+                    completedin +
+                    " seconds"
+                );
+              }
+            });
+          },
+        }
+      );
+      $("#sortable").disableSelection();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+#title {
+  font-size: 200%;
+  font-style: italic;
+}
+.reff {
+  width: 30%;
+  text-overflow: clip;
+  border: 5px solid rgb(209, 230, 24);
+  box-sizing: border-box;
+}
+#startBtn {
+  border: 5px solid rgb(209, 230, 24);
+  box-sizing: border-box;
+  font-size: 200%;
+  font-style: italic;
+  width: 200px;
+  height: 60px;
+  position: absolute;
+  left: 45%;
+  bottom: 11px;
+}
+
+#puzzle {
+  width: 600px;
+  height: 600px;
+  margin: auto;
+  display: inline-block;
+}
+.tile {
+  background-image: url("400x400.jpg");
+  width: 200px;
+  height: 200px;
+  float: left;
+  border: 1px solid silver;
+  box-sizing: border-box;
+}
+#tile1 {
+  background-position: 0 0;
+}
+#tile2 {
+  background-position: -200px 0px;
+}
+#tile3 {
+  background-position: -400px -0px;
+}
+#tile4 {
+  background-position: -0px -200px;
+}
+#tile5 {
+  background-position: -200px -200px;
+}
+#tile6 {
+  background-position: -400px -200px;
+}
+#tile7 {
+  background-position: -0 -400px;
+}
+#tile8 {
+  background-position: -200px -400px;
+}
+#tile9 {
+  background-position: -400px -400px;
+}
+#popup {
+  display: inline;
+  font-size: 400%;
+  text-decoration-color: aquamarine;
+}
+#message {
+  display: inline;
+  font-size: 200%;
+  text-decoration-color: aquamarine;
+}
